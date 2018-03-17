@@ -7,7 +7,9 @@
 
         </div>
       </template>
-
+      <div class="">
+        <!-- <button v-on:click="getTest()">Load More</button> -->
+      </div>
     </div>
   </div>
 </template>
@@ -27,11 +29,21 @@ export default {
   created: function() {
      this.getArticles();
      //this.getTest();
+     let ckeditor = document.createElement('script');
+     ckeditor.setAttribute('src',"//cdn.iframe.ly/embed.js");
+     document.body.appendChild(ckeditor);
 
    },
    computed: {
      newsArticles: function(){
-       return this.articles;
+       return this.articles.filter(function(item) {
+	        if(item["Team Name"] == "Utah Jazz"){
+            return true;
+          }
+          else {
+            return false;
+          }
+	 });
      }
    },
 
@@ -50,7 +62,10 @@ export default {
     getTest: function(){
       axios.get('https://api.mozenda.com/rest?WebServiceKey=D185B582-0CDB-41EE-B299-1C357F17A82B&Service=Mozenda10&Operation=View.GetItems&ViewID=11151&ResponseFormat=JSON').then(response => {
         console.log(response);
-        this.articles = response.data.Item;
+        var temp = response.data.Item;
+        for (var iCount = 0; iCount < temp.length; iCount++){
+          this.articles.push(temp[iCount]);
+        }
         return true;
       }).catch(err => {
         console.log(err);
