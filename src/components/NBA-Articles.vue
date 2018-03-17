@@ -3,7 +3,7 @@
     <h1 class="title">NBA News</h1>
     <div class="container">
       <template v-for="article in articles">
-        <div v-html='article["Embed HTML"]'>
+        <div class="News" v-html='article["Embed HTML"]'>
 
         </div>
       </template>
@@ -28,6 +28,11 @@ export default {
      this.getArticles();
      //this.getTest();
 
+   },
+   computed: {
+     newsArticles: function(){
+       return this.articles;
+     }
    },
 
   methods: {
@@ -54,21 +59,23 @@ export default {
 
     },
 
-    cleanArticles: function(){
-      for (var iCount = 0; iCount < this.articles.length; iCount++){
-        var temp = replaceall("\\", " ",this.articles[iCount]['Embed HTML']);
-        this.articlesClean.push(temp);
-      }
-      this.articles = this.articlesClean;
-
-    }
   }
 
 </script>
 
 <style>
   .container {
-    width: 80%;
+    width: 70%;
     margin: auto;
+  }
+
+  .News{
+    margin-bottom: 35px;
+  }
+
+  @media screen and (max-width: 550px){
+    .container{
+      width:90%;
+    }
   }
 </style>

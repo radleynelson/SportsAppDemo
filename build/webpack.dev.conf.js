@@ -34,6 +34,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
+    //host: '10.0.0.90',
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
       : false,
