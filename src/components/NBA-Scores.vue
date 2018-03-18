@@ -65,7 +65,7 @@
                       <td>-</td>
                     </template>
                   </template>
-                  <th>77</th>
+                  <template v-if="score.awayScore == undefined || null"><th>-</th></template><template v-else><th>{{score.awayScore}}</th></template>
                </tr>
                <tr>
                   <td class="homeAbr" v-bind:label="score.game.homeTeam.Abbreviation">
@@ -96,7 +96,7 @@
                       <td>-</td>
                     </template>
                   </template>
-                  <th>84</th>
+                  <template v-if="score.homeScore == undefined || null"><th>-</th></template><template v-else><th>{{score.homeScore}}</th></template>
                </tr>
             </tbody>
          </table>
