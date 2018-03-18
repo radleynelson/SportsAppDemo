@@ -30,7 +30,7 @@ export default {
      this.getArticles();
      //this.getTest();
      let ckeditor = document.createElement('script');
-     ckeditor.setAttribute('src',"//cdn.iframe.ly/embed.js");
+     ckeditor.setAttribute('src',"//cdn.iframe.ly/embed.js?v="+new Date().getTime());
      document.body.appendChild(ckeditor);
 
    },
