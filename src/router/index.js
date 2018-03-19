@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import NBAArticles from '@/components/NBA-Articles'
 import NBAScores from '@/components/NBA-Scores'
+import Galary from '@/components/Galary'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/NBA-Scores',
       name: 'NBA-Scores',
       component: NBAScores
+    },
+    {
+      path: '/NBA-Galary',
+      name: 'Galary',
+      component: Galary
     }
   ]
 })

@@ -94,3 +94,8 @@ export default {
     }
   }
 </style>
+<style scoped>
+.title{
+  font-size: 50px;
+}
+</style>

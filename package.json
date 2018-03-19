@@ -10,10 +10,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ajv": "^6.3.0",
     "axios": "^0.18.0",
     "replaceall": "^0.1.6",
+    "simple-vue-datepicker": "0.0.14",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-datepicker": "^1.8.3",
+    "vuejs-datepicker": "^0.9.29"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
