@@ -106,7 +106,7 @@
                </tr>
             </tbody>
          </table>
-         <div class="has-text-centered"><button v-on:click="getGame(score.game.ID)" class="button is-outlined is-info">Box-Score</button></div>
+         <div class="has-text-centered"><button v-on:click="getGame(score.game.ID, score.game.homeTeam.Abbreviation, score.game.awayTeam.Abbreviation, score.gameStatus, score.isUnplayed)" class="button is-outlined is-info">Box-Score</button></div>
       </div>
     </div>
 
@@ -131,7 +131,7 @@
                           <strong id="home-game-score" class="team-Abbr">{{currentGame.homeTeam.homeTeamStats.Pts["#text"]}}</strong>
                        </p>
                     </div>
-                    <div class="game-Status">Final</div>
+                    <div class="game-Status">{{currentGame.GameStatus}}</div>
                     <div class="right-boxscore-team">
                        <p id="away-abr" class="team-Abbr">{{currentGame.game.awayTeam.Abbreviation}}</p>
                        <p id="away-record" class="team-record">43-29</p>
@@ -171,7 +171,7 @@
                              <td class="FGM-FGA">{{player.stats.FgMade["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
                              <td class="PlayerReb">{{player.stats.Reb["#text"]}}</td>
                              <td class="PlayerAST">{{player.stats.Ast["#text"]}}</td>
-                             <td class="PTS">5</td>
+                             <td class="PTS">{{player.stats.Pts["#text"]}}</td>
                           </tr>
                        </tbody>
                     </table>
@@ -189,7 +189,7 @@
                             <td class="FGM-FGA">{{player.stats.FgMade["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
                             <td class="PlayerReb">{{player.stats.Reb["#text"]}}</td>
                             <td class="PlayerAST">{{player.stats.Ast["#text"]}}</td>
-                            <td class="PTS">5</td>
+                            <td class="PTS">{{player.stats.Pts["#text"]}}</td>
                          </tr>
                        </thead>
                        <tbody id="aPlayers">
@@ -209,8 +209,104 @@
            </div>
         </section>
     </template>
+    <!-- If the game hasn't started yet .playerstatsentry -->
+    <template v-else-if="homePlayers.playerstatsentry != undefined" >
+      <section id="gameBoxScore">
+         <div class="card">
+            <div class="card-content content-wrapper">
+               <div class="box-Score-Container">
+                  <div>
+                     <p id="home-team-image"><img class="is-64x64" v-bind:src="filePath + homePlayers.playerstatsentry[0].team.Abbreviation + fileExt"></p>
+                  </div>
+                  <div>
+                     <p id="home-abr" class="team-Abbr">{{homePlayers.playerstatsentry[0].team.Abbreviation}}</p>
+                     <p id="home-record" class="team-record">52-18</p>
+                  </div>
+                  <div>
+                     <p>
+                        <strong id="home-game-score" class="team-Abbr">-</strong>
+                     </p>
+                  </div>
+                  <div class="game-Status">{{homePlayers.GameStatus}}</div>
+                  <div class="right-boxscore-team">
+                     <p id="away-abr" class="team-Abbr">{{homePlayers.playerstatsentry[0].team.Abbreviation}}</p>
+                     <p id="away-record" class="team-record">43-29</p>
+                  </div>
+                  <div>
+                     <p>
+                        <strong id="away-game-score" class="team-Abbr">-</strong>
+                     </p>
+                  </div>
+                  <div>
+                     <p id="away-team-image"><img class="is-64x64" v-bind:src="filePath + awayPlayers.playerstatsentry[0].team.Abbreviation + fileExt"></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="box">
+            <div id="HomeHeader" class="title is-left team-header">{{homePlayers.playerstatsentry[0].team.City}}&nbsp;{{homePlayers.playerstatsentry[0].team.Name}}</div>
+            <div>
+               <div class="content row">
+                  <table class="table is-narrow is-striped">
+                     <thead>
+                        <tr>
+                           <th>P</th>
+                           <th>Name</th>
+                           <th>MIN</th>
+                           <th>FG</th>
+                           <th>REB</th>
+                           <th>AST</th>
+                           <th>PTS</th>
+                        </tr>
+                     </thead>
+                     <tbody id="hPlayers">
+                        <tr v-for="player in homePlayers.playerstatsentry">
+                           <td class="PlayerPostiong">{{player.player.Position}}</td>
+                           <td clas="PlayerName">{{player.player.LastName}}</td>
+                           <td class="PlayerMins">{{Math.floor((player.stats.MinSecondsPerGame["#text"]/60))}}</td>
+                           <td class="FGM-FGA">{{player.stats.FgMadePerGame["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
+                           <td class="PlayerReb">{{player.stats.RebPerGame["#text"]}}</td>
+                           <td class="PlayerAST">{{player.stats.AstPerGame["#text"]}}</td>
+                           <td class="PTS">{{player.stats.PtsPerGame["#text"]}}</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <div id="AwayHeader" class="title is-left team-header">{{awayPlayers.playerstatsentry[0].team.City}}&nbsp;{{awayPlayers.playerstatsentry[0].team.Name}}</div>
+            <div>
+               <div class="content row">
+                  <table class="table is-narrow is-striped">
+                     <thead>
+                       <tr v-for="player in awayPlayers.playerstatsentry">
+                          <td class="PlayerPostiong">{{player.player.Position}}</td>
+                          <td clas="PlayerName">{{player.player.LastName}}</td>
+                          <td class="PlayerMins">{{Math.floor((player.stats.MinSecondsPerGame["#text"]/60))}}</td>
+                          <td class="FGM-FGA">{{player.stats.FgMadePerGame["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
+                          <td class="PlayerReb">{{player.stats.RebPerGame["#text"]}}</td>
+                          <td class="PlayerAST">{{player.stats.AstPerGame["#text"]}}</td>
+                          <td class="PTS">{{player.stats.PtsPerGame["#text"]}}</td>
+                       </tr>
+                     </thead>
+                     <tbody id="aPlayers">
+                        <tr id="&quot; + awayPlayerData[iCount].playerID+&quot;">
+                           <td class="PlayerPostiong">SG</td>
+                           <td clas="PlayerName">Abrines</td>
+                           <td class="PlayerMins">6</td>
+                           <td class="FGM-FGA">2-2</td>
+                           <td class="PlayerReb">0</td>
+                           <td class="PlayerAST">0</td>
+                           <td class="PTS">6</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </section>
+  </template>
     </div>
-    <button v-on:click="boxScore = false" class="modal-close"></button>
+    <button v-on:click="closeGame()" class="modal-close"></button>
     </div>
 
 
@@ -235,7 +331,9 @@ export default {
       GameURL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/game_boxscore.json?gameid=',
       currentGame: {},
       filePath: "/static/",
-      fileExt: ".png"
+      fileExt: ".png",
+      homePlayers: {},
+      awayPlayers: {},
     }
   },
   created: function(){
@@ -286,15 +384,39 @@ export default {
        });
      },
 
-     getGame: function(gameID) {
-       axios.get((this.GameURL + gameID),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response => {
-         this.currentGame = response.data.gameboxscore;
-         this.boxScore = true;
-         console.log(response.data);
-         return true;
-       }).catch(err => {
-         console.log(err);
-       })
+     getGame: function(gameID, homeAbbr, awayAbbr, gameStatus, isUnplayed) {
+       if(isUnplayed == "false"){
+         axios.get((this.GameURL + gameID),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response => {
+           this.currentGame = response.data.gameboxscore;
+           this.boxScore = true;
+           this.currentGame.GameStatus = gameStatus;
+           console.log(response.data);
+           return true;
+         }).catch(err => {
+           console.log(err);
+         })
+       }
+       else{
+         axios.get(("https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?sort=stats.PTS/G.D&team="+homeAbbr),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response => {
+           console.log(response.data);
+           this.homePlayers = response.data.cumulativeplayerstats;
+           this.homePlayers.GameStatus = gameStatus;
+           this.boxScore = true;
+           return true
+         }).then(yellow => {
+           axios.get(("https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?sort=stats.PTS/G.D&team="+awayAbbr),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response =>{
+             this.awayPlayers = response.data.cumulativeplayerstats;
+           })
+         }).catch(err => {
+           console.log(err);
+         })
+       }
+
+     },
+
+     closeGame: function(){
+       this.boxScore = false;
+       this.currentGame = {};
      },
 
      cleanScores: function(){
