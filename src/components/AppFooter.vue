@@ -10,7 +10,7 @@
             <a href="https://github.com/radleynelson/Creative-Project1" target="_blank">GitHub Repository</a>
 
             <p>
-                <a class="icon" href="https://github.com/radleynelson/Creative-Project1" target="_blank">
+                <a class="icon" href="https://github.com/radleynelson/SportsAppDemo" target="_blank">
                     <i class="fa fa-github fa-2x"></i>
                 </a>
                 <a class="icon" href="https://www.instagram.com/radstlman" target="_blank">
