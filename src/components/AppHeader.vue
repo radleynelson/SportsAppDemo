@@ -16,7 +16,7 @@
                 <router-link to="/NBA-Standings">Standings</router-link>
             </li>
             <li>
-              <router-link to="/NBA-News">News</router-link>
+              <a v-on:click="news()">News</a>
 
             </li>
             <li>
@@ -38,6 +38,10 @@
        this.$router.push('/');
        location.reload();
 
+     },
+     news: function(){
+       this.$router.push('/NBA-News');
+       location.reload();
      }
    }
  }

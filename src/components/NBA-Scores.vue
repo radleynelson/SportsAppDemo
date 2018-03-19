@@ -106,104 +106,113 @@
                </tr>
             </tbody>
          </table>
-         <div class="has-text-centered"><button class="button is-outlined is-info">Box-Score</button></div>
+         <div class="has-text-centered"><button v-on:click="getGame(score.game.ID)" class="button is-outlined is-info">Box-Score</button></div>
       </div>
     </div>
 
-
-    <div v-bind:class="{ is-active: boxScore }class="modal">
-<div class="modal-background"></div>
-<div class="modal-content">
-  <!-- Any other Bulma elements you want -->
-  <section id="gameBoxScore">
-      <div class="card">
-          <div class="card-content content-wrapper">
-              <div class="box-Score-Container">
-                  <div>
-                      <p id = "home-team-image"><img class="is-64x64" src=""></p>
-                  </div>
-                  <div>
-                      <p id="home-abr" class="team-Abbr"></p>
-                      <p id = "home-record" class="team-record"></p>
-                  </div>
-
-                  <div>
-                      <p>
-                          <strong id="home-game-score" class="team-Abbr"></strong>
-                      </p>
-                  </div>
-                  <div class="game-Status"></div>
-
-                  <div class="right-boxscore-team">
-                      <p id="away-abr" class="team-Abbr"></p>
-                      <p id="away-record" class="team-record"></p>
-                  </div>
-
-                  <div>
-                      <p>
-                          <strong id="away-game-score" class="team-Abbr"></strong>
-                      </p>
-                  </div>
-                  <div>
-                      <p id = "away-team-image"><img class="is-64x64" src=""></p>
-                  </div>
+    <div class="modal" v-bind:class="{isActive: boxScore}">
+    <div v-on:click="boxScore = false" class="modal-background"></div>
+    <div class="modal-content">
+      <!-- Any other Bulma elements you want -->
+      <template v-if="currentGame.homeTeam != undefined">
+        <section id="gameBoxScore">
+           <div class="card">
+              <div class="card-content content-wrapper">
+                 <div class="box-Score-Container">
+                    <div>
+                       <p id="home-team-image"><img class="is-64x64" v-bind:src="filePath + currentGame.game.homeTeam.Abbreviation + fileExt"></p>
+                    </div>
+                    <div>
+                       <p id="home-abr" class="team-Abbr">{{currentGame.game.homeTeam.Abbreviation}}</p>
+                       <p id="home-record" class="team-record">52-18</p>
+                    </div>
+                    <div>
+                       <p>
+                          <strong id="home-game-score" class="team-Abbr">{{currentGame.homeTeam.homeTeamStats.Pts["#text"]}}</strong>
+                       </p>
+                    </div>
+                    <div class="game-Status">Final</div>
+                    <div class="right-boxscore-team">
+                       <p id="away-abr" class="team-Abbr">{{currentGame.game.awayTeam.Abbreviation}}</p>
+                       <p id="away-record" class="team-record">43-29</p>
+                    </div>
+                    <div>
+                       <p>
+                          <strong id="away-game-score" class="team-Abbr">{{currentGame.awayTeam.awayTeamStats.Pts["#text"]}}</strong>
+                       </p>
+                    </div>
+                    <div>
+                       <p id="away-team-image"><img class="is-64x64" v-bind:src="filePath + currentGame.game.awayTeam.Abbreviation + fileExt"></p>
+                    </div>
+                 </div>
               </div>
-          </div>
-      </div>
-
-      <div class="box">
-          <div id="HomeHeader" class="title is-left team-header">
-          </div>
-          <div>
-              <div class="content row">
-                  <table class="table is-narrow is-striped">
-                      <thead>
-                      <tr>
-                          <th>P</th>
-                          <th>Name</th>
-                          <th>MIN</th>
-                          <th>FG</th>
-                          <th>REB</th>
-                          <th>AST</th>
-                          <th>PTS</th>
-
-                      </tr>
-                      </thead>
-                      <tbody id = "hPlayers">
-
-                      </tbody>
-                  </table>
+           </div>
+           <div class="box">
+              <div id="HomeHeader" class="title is-left team-header">{{currentGame.game.homeTeam.City}}&nbsp;{{currentGame.game.homeTeam.Name}}</div>
+              <div>
+                 <div class="content row">
+                    <table class="table is-narrow is-striped">
+                       <thead>
+                          <tr>
+                             <th>P</th>
+                             <th>Name</th>
+                             <th>MIN</th>
+                             <th>FG</th>
+                             <th>REB</th>
+                             <th>AST</th>
+                             <th>PTS</th>
+                          </tr>
+                       </thead>
+                       <tbody id="hPlayers">
+                          <tr v-for="player in currentGame.homeTeam.homePlayers.playerEntry">
+                             <td class="PlayerPostiong">{{player.player.Position}}</td>
+                             <td clas="PlayerName">{{player.player.LastName}}</td>
+                             <td class="PlayerMins">{{Math.floor((player.stats.MinSeconds["#text"]/60))}}</td>
+                             <td class="FGM-FGA">{{player.stats.FgMade["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
+                             <td class="PlayerReb">{{player.stats.Reb["#text"]}}</td>
+                             <td class="PlayerAST">{{player.stats.Ast["#text"]}}</td>
+                             <td class="PTS">5</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
               </div>
-          </div>
-
-          <div id="AwayHeader" class="title is-left team-header">
-          </div>
-          <div>
-              <div class="content row">
-                  <table class="table is-narrow is-striped">
-                      <thead>
-                      <tr>
-                          <th>P</th>
-                          <th>Name</th>
-                          <th>MIN</th>
-                          <th>FG</th>
-                          <th>REB</th>
-                          <th>AST</th>
-                          <th>PTS</th>
-
-                      </tr>
-                      </thead>
-                      <tbody id="aPlayers">
-
-                      </tbody>
-                  </table>
+              <div id="AwayHeader" class="title is-left team-header">{{currentGame.game.awayTeam.City}}&nbsp;{{currentGame.game.awayTeam.Name}}</div>
+              <div>
+                 <div class="content row">
+                    <table class="table is-narrow is-striped">
+                       <thead>
+                         <tr v-for="player in currentGame.awayTeam.awayPlayers.playerEntry">
+                            <td class="PlayerPostiong">{{player.player.Position}}</td>
+                            <td clas="PlayerName">{{player.player.LastName}}</td>
+                            <td class="PlayerMins">{{Math.floor((player.stats.MinSeconds["#text"]/60))}}</td>
+                            <td class="FGM-FGA">{{player.stats.FgMade["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
+                            <td class="PlayerReb">{{player.stats.Reb["#text"]}}</td>
+                            <td class="PlayerAST">{{player.stats.Ast["#text"]}}</td>
+                            <td class="PTS">5</td>
+                         </tr>
+                       </thead>
+                       <tbody id="aPlayers">
+                          <tr id="&quot; + awayPlayerData[iCount].playerID+&quot;">
+                             <td class="PlayerPostiong">SG</td>
+                             <td clas="PlayerName">Abrines</td>
+                             <td class="PlayerMins">6</td>
+                             <td class="FGM-FGA">2-2</td>
+                             <td class="PlayerReb">0</td>
+                             <td class="PlayerAST">0</td>
+                             <td class="PTS">6</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
               </div>
-          </div>
-      </div>
-  </section>
-</div>
-<button class="modal-close"></button>
-</div>
+           </div>
+        </section>
+    </template>
+    </div>
+    <button v-on:click="boxScore = false" class="modal-close"></button>
+    </div>
+
 
 
 </section>
@@ -223,7 +232,10 @@ export default {
       URL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/scoreboard.json?fordate=',
       date: new Date(),
       boxScore: false,
-
+      GameURL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/game_boxscore.json?gameid=',
+      currentGame: {},
+      filePath: "/static/",
+      fileExt: ".png"
     }
   },
   created: function(){
@@ -272,6 +284,17 @@ export default {
        }).catch(err => {
          console.log(err);
        });
+     },
+
+     getGame: function(gameID) {
+       axios.get((this.GameURL + gameID),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response => {
+         this.currentGame = response.data.gameboxscore;
+         this.boxScore = true;
+         console.log(response.data);
+         return true;
+       }).catch(err => {
+         console.log(err);
+       })
      },
 
      cleanScores: function(){
@@ -355,6 +378,12 @@ input, select {
     font-size: 100%;
     border: 1px solid #ccc;
     width: 100%;
+}
+
+.modal.isActive {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 
