@@ -23,7 +23,7 @@
                 <router-link to="/NBA-Galary">Galary</router-link>
             </li>
             <li class="right">
-                <router-link to="/"><i class="fa fa-user-circle icons" aria-hidden="true"></i></router-link>
+                <router-link to="/User-Login"><i class="fa fa-user-circle icons" aria-hidden="true"></i></router-link>
             </li>
         </ul>
     </nav>
