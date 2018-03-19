@@ -111,7 +111,7 @@
     </div>
 
     <div class="modal" v-bind:class="{isActive: boxScore}">
-    <div v-on:click="boxScore = false" class="modal-background"></div>
+    <div v-on:click="closeGame()" class="modal-background"></div>
     <div class="modal-content">
       <!-- Any other Bulma elements you want -->
       <template v-if="currentGame.homeTeam != undefined">
@@ -229,7 +229,7 @@
                   </div>
                   <div class="game-Status">{{homePlayers.GameStatus}}</div>
                   <div class="right-boxscore-team">
-                     <p id="away-abr" class="team-Abbr">{{homePlayers.playerstatsentry[0].team.Abbreviation}}</p>
+                     <p id="away-abr" class="team-Abbr">{{awayPlayers.playerstatsentry[0].team.Abbreviation}}</p>
                      <p id="away-record" class="team-record">43-29</p>
                   </div>
                   <div>
@@ -264,7 +264,7 @@
                            <td class="PlayerPostiong">{{player.player.Position}}</td>
                            <td clas="PlayerName">{{player.player.LastName}}</td>
                            <td class="PlayerMins">{{Math.floor((player.stats.MinSecondsPerGame["#text"]/60))}}</td>
-                           <td class="FGM-FGA">{{player.stats.FgMadePerGame["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
+                           <td class="FGM-FGA">{{player.stats.FgMadePerGame["#text"]}}-{{player.stats.FgAttPerGame["#text"]}}</td>
                            <td class="PlayerReb">{{player.stats.RebPerGame["#text"]}}</td>
                            <td class="PlayerAST">{{player.stats.AstPerGame["#text"]}}</td>
                            <td class="PTS">{{player.stats.PtsPerGame["#text"]}}</td>
@@ -282,7 +282,7 @@
                           <td class="PlayerPostiong">{{player.player.Position}}</td>
                           <td clas="PlayerName">{{player.player.LastName}}</td>
                           <td class="PlayerMins">{{Math.floor((player.stats.MinSecondsPerGame["#text"]/60))}}</td>
-                          <td class="FGM-FGA">{{player.stats.FgMadePerGame["#text"]}}-{{player.stats.FgAtt["#text"]}}</td>
+                          <td class="FGM-FGA">{{player.stats.FgMadePerGame["#text"]}}-{{player.stats.FgAttPerGame["#text"]}}</td>
                           <td class="PlayerReb">{{player.stats.RebPerGame["#text"]}}</td>
                           <td class="PlayerAST">{{player.stats.AstPerGame["#text"]}}</td>
                           <td class="PTS">{{player.stats.PtsPerGame["#text"]}}</td>
