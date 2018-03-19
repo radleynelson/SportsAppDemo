@@ -13,7 +13,7 @@
                 <router-link to="/NBA-Scores">Scores</router-link>
             </li>
             <li>
-                <router-link to="/">Standings</router-link>
+                <router-link to="/NBA-Standings">Standings</router-link>
             </li>
             <li>
               <router-link to="/NBA-News">News</router-link>

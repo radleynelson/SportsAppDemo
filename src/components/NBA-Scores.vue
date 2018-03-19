@@ -109,6 +109,103 @@
          <div class="has-text-centered"><button class="button is-outlined is-info">Box-Score</button></div>
       </div>
     </div>
+
+
+    <div v-bind:class="{ is-active: boxScore }class="modal">
+<div class="modal-background"></div>
+<div class="modal-content">
+  <!-- Any other Bulma elements you want -->
+  <section id="gameBoxScore">
+      <div class="card">
+          <div class="card-content content-wrapper">
+              <div class="box-Score-Container">
+                  <div>
+                      <p id = "home-team-image"><img class="is-64x64" src=""></p>
+                  </div>
+                  <div>
+                      <p id="home-abr" class="team-Abbr"></p>
+                      <p id = "home-record" class="team-record"></p>
+                  </div>
+
+                  <div>
+                      <p>
+                          <strong id="home-game-score" class="team-Abbr"></strong>
+                      </p>
+                  </div>
+                  <div class="game-Status"></div>
+
+                  <div class="right-boxscore-team">
+                      <p id="away-abr" class="team-Abbr"></p>
+                      <p id="away-record" class="team-record"></p>
+                  </div>
+
+                  <div>
+                      <p>
+                          <strong id="away-game-score" class="team-Abbr"></strong>
+                      </p>
+                  </div>
+                  <div>
+                      <p id = "away-team-image"><img class="is-64x64" src=""></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="box">
+          <div id="HomeHeader" class="title is-left team-header">
+          </div>
+          <div>
+              <div class="content row">
+                  <table class="table is-narrow is-striped">
+                      <thead>
+                      <tr>
+                          <th>P</th>
+                          <th>Name</th>
+                          <th>MIN</th>
+                          <th>FG</th>
+                          <th>REB</th>
+                          <th>AST</th>
+                          <th>PTS</th>
+
+                      </tr>
+                      </thead>
+                      <tbody id = "hPlayers">
+
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+          <div id="AwayHeader" class="title is-left team-header">
+          </div>
+          <div>
+              <div class="content row">
+                  <table class="table is-narrow is-striped">
+                      <thead>
+                      <tr>
+                          <th>P</th>
+                          <th>Name</th>
+                          <th>MIN</th>
+                          <th>FG</th>
+                          <th>REB</th>
+                          <th>AST</th>
+                          <th>PTS</th>
+
+                      </tr>
+                      </thead>
+                      <tbody id="aPlayers">
+
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+<button class="modal-close"></button>
+</div>
+
+
 </section>
 </template>
 
@@ -125,6 +222,7 @@ export default {
       fullScores: [],
       URL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/scoreboard.json?fordate=',
       date: new Date(),
+      boxScore: false,
 
     }
   },
