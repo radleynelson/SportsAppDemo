@@ -74,7 +74,7 @@ export default {
   computed: {
     getRandomPosts: function(){
       this.getArticles();
-      return [this.instaEmbeds[5], this.instaEmbeds[3], this.instaEmbeds[2]];
+      return [this.instaEmbeds[5], this.instaEmbeds[0], this.instaEmbeds[2]];
     }
   },
   methods: {
