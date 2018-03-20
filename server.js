@@ -171,6 +171,14 @@ app.put('/api/image/:id', (req, res) => {
 
 });
 
+app.get("/api/fetchNewArticles", (req, res) => {
+  const result = "Success";
+  fetchArticles();
+  getPosts();
+  console.log("updated");
+  res.send(result);
+});
+
 app.delete("/api/images/:id", (req,res) => {
   let id = parseInt(req.params.id);
   let removeIndex = -1;
