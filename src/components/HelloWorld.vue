@@ -74,7 +74,10 @@ export default {
   computed: {
     getRandomPosts: function(){
       this.getArticles();
-      return [this.instaEmbeds[5], this.instaEmbeds[0], this.instaEmbeds[2]];
+      let rnd1 = Math.floor(Math.random() * this.instaEmbeds.length);
+      let rnd2 = Math.floor(Math.random() * this.instaEmbeds.length);
+      let rnd3 = Math.floor(Math.random() * this.instaEmbeds.length);
+      return [this.instaEmbeds[rnd1], this.instaEmbeds[rnd2], this.instaEmbeds[rnd3]];
     }
   },
   methods: {

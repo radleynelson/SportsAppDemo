@@ -86,6 +86,7 @@ function getPosts(){
   axios.get("https://api.mozenda.com/rest?WebServiceKey=D185B582-0CDB-41EE-B299-1C357F17A82B&Service=Mozenda10&Operation=View.GetItems&ViewID=11152&ResponseFormat=JSON").then(response =>{
     instaURLs = response.data.Item;
   }).then (response => {
+    instaEmbeds = [];
     for (var i = 0; i < instaURLs.length; i++) {
       axios.get("https://api.instagram.com/oembed/?url=" + instaURLs[i]["NBA instagram"] + "/&amp;omitscript=true&amp;hidecaption=true").then(response =>{
         instaEmbeds.push(response.data);

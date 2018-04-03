@@ -35,16 +35,7 @@ export default {
 
    },
    computed: {
-     newsArticles: function(){
-       return this.articles.filter(function(item) {
-	        if(item["Team Name"] == "Utah Jazz"){
-            return true;
-          }
-          else {
-            return false;
-          }
-	 });
-     }
+
    },
 
   methods: {

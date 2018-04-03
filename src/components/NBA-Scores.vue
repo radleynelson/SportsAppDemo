@@ -499,7 +499,7 @@ input, select {
     padding: .75em .5em;
     font-size: 100%;
     border: 1px solid #ccc;
-    width: 100%;
+    width: 123px;
 }
 
 .modal.isActive {

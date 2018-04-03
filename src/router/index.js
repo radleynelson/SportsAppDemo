@@ -6,6 +6,8 @@ import NBAScores from '@/components/NBA-Scores'
 import Galary from '@/components/Galary'
 import NBAStandings from '@/components/NBA-Standings'
 import UserLogin from '@/components/User-Login'
+import MLBScores from '@/components/MLB-Scores'
+import MLBPlaybyPlay from '@/components/MLB-PlaybyPlay'
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/User-Login',
       name: 'User-Login',
       component: UserLogin
+    },
+    {
+      path: '/MLB-Scores',
+      name: 'MLB-Scores',
+      component: MLBScores
+    },
+    {
+      path: '/MLB-PlaybyPlay',
+      name: 'MLB-PlaybyPlay',
+      component: MLBPlaybyPlay
     }
   ]
 })
