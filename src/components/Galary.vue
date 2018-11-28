@@ -50,7 +50,7 @@ export default {
 
   methods: {
     getImages: function(){
-      axios.get("/api/images").then(response =>{
+      axios.get("/nba/images").then(response =>{
         this.images = response.data;
         return true;
       }).catch(err =>{
@@ -58,7 +58,7 @@ export default {
       })
     },
     addImage: function(){
-      axios.post("/api/images",{
+      axios.post("/nba/images",{
         url: this.changeURL
       }).then(response =>{
         this.url = "";
@@ -69,7 +69,7 @@ export default {
       })
     },
     updateImage: function(image, index){
-      axios.put('/api/image/' + image.id, {
+      axios.put('/nba/image/' + image.id, {
         url: this.url[index],
         id: this.id,
 
@@ -82,7 +82,7 @@ export default {
       })
     },
     deleteImage: function(index){
-      axios.delete("/api/images/" + this.images[index].id).then(response => {
+      axios.delete("/nba/images/" + this.images[index].id).then(response => {
         this.getImages();
         return true;
       }).catch(err =>{
