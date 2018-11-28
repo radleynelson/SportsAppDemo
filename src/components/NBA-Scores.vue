@@ -325,10 +325,10 @@ export default {
     return {
       scores: [],
       fullScores: [],
-      URL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/scoreboard.json?fordate=',
+      URL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/scoreboard.json?fordate=',
       date: new Date(),
       boxScore: false,
-      GameURL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/game_boxscore.json?gameid=',
+      GameURL: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/game_boxscore.json?gameid=',
       currentGame: {},
       filePath: "/static/",
       fileExt: ".png",
@@ -397,14 +397,14 @@ export default {
          })
        }
        else{
-         axios.get(("https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?sort=stats.PTS/G.D&team="+homeAbbr),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response => {
+         axios.get(("https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/cumulative_player_stats.json?sort=stats.PTS/G.D&team="+homeAbbr),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response => {
            console.log(response.data);
            this.homePlayers = response.data.cumulativeplayerstats;
            this.homePlayers.GameStatus = gameStatus;
            this.boxScore = true;
            return true
          }).then(yellow => {
-           axios.get(("https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?sort=stats.PTS/G.D&team="+awayAbbr),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response =>{
+           axios.get(("https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/cumulative_player_stats.json?sort=stats.PTS/G.D&team="+awayAbbr),{auth: {username: 'radstlman',password: 'McRn4ever!'}},).then(response =>{
              this.awayPlayers = response.data.cumulativeplayerstats;
            })
          }).catch(err => {

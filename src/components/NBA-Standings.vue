@@ -123,7 +123,7 @@ export default {
       easternStandings: [],
       filePath: "/static/",
       fileExt: ".png",
-      url: "https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/conference_team_standings.json?",
+      url: "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/conference_team_standings.json?",
     }
   },
   created: function(){

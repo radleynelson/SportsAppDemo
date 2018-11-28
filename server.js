@@ -88,7 +88,7 @@ function getPosts(){
   }).then (response => {
     instaEmbeds = [];
     for (var i = 0; i < instaURLs.length; i++) {
-      axios.get("https://api.instagram.com/oembed/?url=" + instaURLs[i]["NBA instagram"] + "/&amp;omitscript=true&amp;hidecaption=true").then(response =>{
+      axios.get("https://api.instagram.com/oembed/?url=" + instaURLs[i]["NBA instagram"] + "&amp;omitscript=true&amp;hidecaption=true").then(response =>{
         instaEmbeds.push(response.data);
         return true
       }).catch(err => {
