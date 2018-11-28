@@ -40,7 +40,7 @@ export default {
 
   methods: {
     getArticles: function(){
-      axios.get("/api/articles").then(response => {
+      axios.get("/nba/articles").then(response => {
         this.articles = response.data;
         console.log(response);
         this.cleanArticles();

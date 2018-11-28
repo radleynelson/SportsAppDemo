@@ -136,20 +136,20 @@ function fetchArticles(){
 }
 fetchArticles();
 
-app.get('/api/articles', (req,res) => {
+app.get('/nba/articles', (req,res) => {
 
   res.send(articles);
 });
 
-app.get('/api/insta', (req, res) => {
+app.get('/nba/insta', (req, res) => {
   res.send(instaEmbeds);
 })
 
-app.get('/api/images', (req,res) =>{
+app.get('/nba/images', (req,res) =>{
   res.send(images);
 });
 
-app.post('/api/images',(req,res)=>{
+app.post('/nba/images',(req,res)=>{
   let id = images.length;
   let url = req.body.url;
 
@@ -157,7 +157,7 @@ app.post('/api/images',(req,res)=>{
   res.send(images);
 });
 
-app.put('/api/image/:id', (req, res) => {
+app.put('/nba/image/:id', (req, res) => {
   console.log(req.params.id);
   let id = parseInt(req.params.id);
   let index = -1;
@@ -172,7 +172,7 @@ app.put('/api/image/:id', (req, res) => {
 
 });
 
-app.get("/api/fetchNewArticles", (req, res) => {
+app.get("/nba/fetchNewArticles", (req, res) => {
   const result = "Success";
   fetchArticles();
   getPosts();
@@ -180,7 +180,7 @@ app.get("/api/fetchNewArticles", (req, res) => {
   res.send(result);
 });
 
-app.delete("/api/images/:id", (req,res) => {
+app.delete("/nba/images/:id", (req,res) => {
   let id = parseInt(req.params.id);
   let removeIndex = -1;
   for (var i = 0; i < images.length; i++) {

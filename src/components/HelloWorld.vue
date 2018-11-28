@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     getPosts: function(){
-      axios.get("/api/insta").then(response =>{
+      axios.get("/nba/insta").then(response =>{
         this.instaEmbeds = response.data;
         //this.getArticles();
         return true;
